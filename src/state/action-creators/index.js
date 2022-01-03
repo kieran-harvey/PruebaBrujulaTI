@@ -52,3 +52,22 @@ export const resetSelectedIds = () =>{
         });
     }
 }
+
+export const selectAll = (idArray) => {
+    return (dispatch) => {
+        dispatch({
+            type:'SELECT_ALL',
+            payload:idArray
+        })
+    }
+}
+
+
+
+export const unselectAll = () => {
+    return (dispatch => {
+        dispatch({
+            type:'UNSELECT_ALL'
+        })
+    })
+}

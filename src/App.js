@@ -16,7 +16,6 @@ import Stack from '@mui/material/Stack';
 
 function App() {
 
-
   //get initial values for 2 state properties
   const listValues = useSelector((state)=>state.list);
   const selectedIds = useSelector((state) =>state.selectedIds);
@@ -29,9 +28,10 @@ function App() {
           removeSelectedIds,
           resetSelectedIds,
           removeItemDblClick,
+          selectAll,
+          unselectAll,
   } = bindActionCreators(actionCreators,dispatch);
   
-
   //handler function for adding new strings
   const addHandler = (e) => {
     let text = '';
@@ -44,7 +44,6 @@ function App() {
     }
     addItem(newItem);
   }
-
 
   //handler function for removing selected strings
   const removeHandler = (e) => {
@@ -83,6 +82,16 @@ function App() {
     store.dispatch(ActionCreators.undo());
   }
 
+  const unselectAllHandler = () => {
+    unselectAll();
+  }
+
+  const selectAllHandler = () => {
+    const idArray = listValues.present.map(value => value.id);
+    resetSelectedIds();
+    selectAll(idArray);
+  }
+
   return (
     <>
       <Box sx={{ width: '100%', maxWidth: 350, bgcolor: 'background.paper',maxHeight:350 }} className='listContainer'>
@@ -102,6 +111,9 @@ function App() {
           <Button variant="outlined" onClick={addHandler} size="small">+</Button>
           <Button variant="outlined" onClick={removeHandler} size="small">-</Button>
           <Button variant="outlined" onClick={undoHandler} size="small">Undo</Button>
+          <hr/>
+          <Button variant="outlined" onClick={selectAllHandler} size="small">Select All</Button>
+          <Button variant="outlined" onClick={unselectAllHandler} size="small">Unselect All</Button>
       </Stack>
 
     </>
