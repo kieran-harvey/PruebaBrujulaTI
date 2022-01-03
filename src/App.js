@@ -29,8 +29,6 @@ function App() {
           removeSelectedIds,
           resetSelectedIds,
           removeItemDblClick,
-          selectAll,
-          deselectAll
   } = bindActionCreators(actionCreators,dispatch);
   
 
